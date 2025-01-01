@@ -6,11 +6,10 @@ interface MyInterface2 {
     fun myFun2()
 }
 
-open class Super {}
+open class Super11 {}
 
 // 클래스에서 상속과 인터페이스 혼용 (241231)
-class MyClass: Super(), MyInterface1, MyInterface2 {
+class MyClass: Super11(), MyInterface1, MyInterface2 {
     override fun myFun1() {}
     override fun myFun2() {}
     }
-}
