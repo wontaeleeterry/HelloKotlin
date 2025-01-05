@@ -7,7 +7,7 @@ package chap05.section3.openclass
 // 청소에 배정된 학생은 반드시 이름이 필요하다.
 interface CleaningCrew {
     val name: String
-    fun startCleanup()     // interface는 프로퍼티의 상태 정보를 저장할 수 없다. 간략한 형태만 표시
+    fun startCleanup()     // interface는 프로퍼티의 상태 정보를 저장할 수 없다. 간략한 형태만 표시 - 메서드 내용은 정의할 수 있지 않나? (240103)
 }
 
 class StudentFloorCleaning(studentName: String) : CleaningCrew {
@@ -20,7 +20,7 @@ class StudentFloorCleaning(studentName: String) : CleaningCrew {
 class StudentForWindowCleaning(studentName: String) : CleaningCrew {
     override val name: String = studentName
     override fun startCleanup() {
-        println("$name : Start cleaning window!")
+        println("$name : Start cleaning window!")    // 각각의 클래스에서 정의(override)된 메서드는 모두 다르다. (240103)
     }
 }
 
@@ -31,7 +31,7 @@ class StudentForWindowCleaning(studentName: String) : CleaningCrew {
 
 class Teacher {
     fun makeStudentToCleaning(student: CleaningCrew) {   // student 매개변수에 클래스가 전달? (250102) : 이해 필요...
-        println("Hey ! ${student.name}!")
+        println("Hey ! ${student.name}!")        // 전달된 매개변수 - 객체(클래스) 에서 학생의 이름을 추출
         student.startCleanup()
     }
 }
@@ -42,12 +42,13 @@ fun main(args: Array<String>) {
     val teacher = Teacher()
 
     // 학생 collection 생성
-    val cleaningCrewCollection = mutableListOf<CleaningCrew>()   // 설명 필요
+    val cleaningCrewCollection = mutableListOf<CleaningCrew>()   // 설명 필요 ---
 
     for (number in 1..5) {
         // Cleaning Floor
         cleaningCrewCollection.add(StudentFloorCleaning("바닥 쓸기 학생 $number"))
         cleaningCrewCollection.add(StudentForWindowCleaning("유리창 청소 학생 $number"))
+        // 공통적인 Interface Collection을 사용하여, 어떤 요소가 추가될 경우 코드 수정 내용이 감소 (240103)
     }
 
     // 학생 청소

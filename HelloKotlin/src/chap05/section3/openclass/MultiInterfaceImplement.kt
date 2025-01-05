@@ -34,7 +34,7 @@ class Pegasus : Horse, Bird1 {           // 인터페이스를 선언하면 다�
 
     // Resolving the jump method conflict
     override fun jump() {
-        println("The Pegasus can jump both like a horse and a bird!")
+        println("The Pegasus can jump both like a horse and a bird!")  // 이 메서드는 타당한가? 아니면 새롭게 정의된 것인가? (240103)
     }
 
     // Optional: Call specific interface implementations
